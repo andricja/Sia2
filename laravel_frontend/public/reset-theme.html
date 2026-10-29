@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset MediKiosk Theme</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: all 0.2s;
+        }
+        button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+        button.danger {
+            background: #dc2626;
+        }
+        button.danger:hover {
+            background: #b91c1c;
+        }
+        button.success {
+            background: #16a34a;
+        }
+        button.success:hover {
+            background: #15803d;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .status.info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 2px solid #60a5fa;
+        }
+        .status.success {
+            background: #dcfce7;
+            color: #166534;
+            border: 2px solid #4ade80;
+        }
+        .status.warning {
+            background: #fef3c7;
+            color: #92400e;
+            border: 2px solid #fbbf24;
+        }
+        code {
+            background: #f3f4f6;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌙 MediKiosk Theme Reset Tool</h1>
+        
+        <div class="status info" id="status">
+            Current theme: <strong id="currentTheme">Checking...</strong>
+        </div>
+
+        <div class="section">
+            <h3>Quick Actions</h3>
+            <button onclick="setLightMode()">☀️ Set Light Mode</button>
+            <button onclick="setDarkMode()">🌙 Set Dark Mode</button>
+            <button class="danger" onclick="clearTheme()">🗑️ Clear Theme</button>
+        </div>
+
+        <div class="section">
+            <h3>Information</h3>
+            <p><strong>localStorage key:</strong> <code>medikiosk-theme</code></p>
+            <p><strong>Possible values:</strong> <code>light</code> or <code>dark</code></p>
+            <p><strong>HTML class:</strong> <code id="htmlClass">Checking...</code></p>
+        </div>
+
+        <div class="section">
+            <h3>Instructions</h3>
+            <ol>
+                <li>Use the buttons above to set your preferred theme</li>
+                <li>The page will reload automatically</li>
+                <li>Go back to MediKiosk to see the changes</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <button class="success" onclick="goToApp()">← Back to MediKiosk</button>
+        </div>
+    </div>
+
+    <script>
+        function checkCurrentTheme() {
+            const theme = localStorage.getItem('medikiosk-theme');
+            const htmlClass = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            
+            document.getElementById('currentTheme').textContent = theme || 'Not set (default: light)';
+            document.getElementById('htmlClass').textContent = htmlClass;
+            
+            if (theme) {
+                document.getElementById('status').className = 'status success';
+            } else {
+                document.getElementById('status').className = 'status warning';
+            }
+        }
+
+        function setLightMode() {
+            localStorage.setItem('medikiosk-theme', 'light');
+            document.documentElement.classList.remove('dark');
+            alert('✅ Light mode activated!\n\nThe page will reload.');
+            location.reload();
+        }
+
+        function setDarkMode() {
+            localStorage.setItem('medikiosk-theme', 'dark');
+            document.documentElement.classList.add('dark');
+            alert('✅ Dark mode activated!\n\nThe page will reload.');
+            location.reload();
+        }
+
+        function clearTheme() {
+            if (confirm('Are you sure you want to clear the theme?\n\nThis will reset to default (light mode).')) {
+                localStorage.removeItem('medikiosk-theme');
+                document.documentElement.classList.remove('dark');
+                alert('✅ Theme cleared!\n\nThe page will reload.');
+                location.reload();
+            }
+        }
+
+        function goToApp() {
+            window.location.href = '/';
+        }
+
+        // Check theme on load
+        checkCurrentTheme();
+
+        // Auto-refresh status every 2 seconds
+        setInterval(checkCurrentTheme, 2000);
+    </script>
+</body>
+</html>

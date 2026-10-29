@@ -1,0 +1,75 @@
+=====================================
+  QUICK FIX - 3 SIMPLE STEPS
+=====================================
+
+PROBLEM: Camera scanner error - modules not found
+
+SOLUTION: Install dependencies and restart
+
+┌─────────────────────────────────┐
+│  STEP 1: Stop Frontend Server  │
+└─────────────────────────────────┘
+
+In the terminal window showing the error:
+→ Press: Ctrl + C
+→ Press: Y (to confirm)
+→ Window will stop showing errors
+
+┌─────────────────────────────────┐
+│  STEP 2: Run Fix Script         │
+└─────────────────────────────────┘
+
+→ Double-click: FIX_AND_RESTART.bat
+→ Wait 1-2 minutes for installation
+→ Script will auto-restart server
+
+OR do it manually:
+→ Open Command Prompt
+→ cd C:\laragon\www\parmacy\laravel_frontend
+→ npm install
+→ npm run dev
+
+┌─────────────────────────────────┐
+│  STEP 3: Test Camera Scanner    │
+└─────────────────────────────────┘
+
+→ Open: http://localhost:5174
+→ Login: staff@medikiosk.com / staff123
+→ Look for blue "Scan" button (header)
+→ Click it
+→ Allow camera permission
+→ Scan a barcode!
+
+=====================================
+
+WHAT THIS DOES:
+✓ Installs react-webcam (camera access)
+✓ Installs @zxing/library (barcode detection)
+✓ Fixes the error
+✓ Restarts server
+
+TIME: 2-3 minutes total
+
+=====================================
+
+TROUBLESHOOTING:
+
+Error still appears?
+→ Check TROUBLESHOOTING.md
+
+Camera not working?
+→ Allow camera permissions in browser
+
+Scan button not visible?
+→ Make sure you're logged in as Staff
+
+=====================================
+
+NEXT STEPS AFTER FIX:
+
+1. Test scanning with a medicine barcode
+2. See item auto-add to cart
+3. Scanner auto-closes
+4. Enjoy fast checkout! 🎉
+
+=====================================

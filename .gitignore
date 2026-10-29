@@ -1,0 +1,40 @@
+# Laravel Backend
+laravel_backend/vendor/
+laravel_backend/node_modules/
+laravel_backend/.env
+laravel_backend/storage/*.key
+laravel_backend/storage/logs/
+laravel_backend/storage/framework/cache/
+laravel_backend/storage/framework/sessions/
+laravel_backend/storage/framework/views/
+laravel_backend/bootstrap/cache/*
+laravel_backend/public/hot
+laravel_backend/public/storage
+laravel_backend/.phpunit.result.cache
+laravel_backend/database/database.sqlite
+laravel_backend/.DS_Store
+
+# React Frontend
+laravel_frontend/node_modules/
+laravel_frontend/dist/
+laravel_frontend/.env
+laravel_frontend/.env.local
+laravel_frontend/.env.production
+laravel_frontend/.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
